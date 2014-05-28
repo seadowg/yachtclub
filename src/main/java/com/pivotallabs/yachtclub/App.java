@@ -1,14 +1,15 @@
 package com.pivotallabs.yachtclub;
 
-import java.util.Optional;
+import com.pivotallabs.yachtclub.config.Configurator;
+import com.pivotallabs.yachtclub.config.Environment;
+import com.pivotallabs.yachtclub.web.Routes;
 
-import static spark.Spark.*;
-
-class App{
+class App {
     public static void main(String[] args) {
-        int appPort = Integer.parseInt(System.getenv().get("VCAP_APP_PORT"));
-        setPort(Optional.ofNullable(appPort).orElse(4567));
+        Configurator configurator = new Configurator(new Environment());
+        configurator.logger();
+        configurator.port();
 
-        get("/", (request, response)-> "<h1>Yacht Club</h1><h2>What would you like to tell the captain?</h2><form><textarea></textarea><input type='submit' value='send'></input></form>");
+        Routes.load();
     }
 }
