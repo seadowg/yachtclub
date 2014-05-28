@@ -10,11 +10,11 @@ public class Configurator {
         this.env = env;
     }
 
-    public void logger() {
+    public void configureLogger() {
         BasicConfigurator.configure();
     }
 
-    public void port() {
+    public void configurePort() {
         setPort((env.getPort()));
     }
 }
